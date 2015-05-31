@@ -4,6 +4,7 @@ import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRegistration;
 
+import org.jboss.arquillian.warp.extension.spring.servlet.WarpDispatcherServlet;
 import org.springframework.web.WebApplicationInitializer;
 import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
 import org.springframework.web.servlet.DispatcherServlet;
@@ -17,7 +18,7 @@ public class HelloWorldInitializer implements WebApplicationInitializer {
 		ctx.setServletContext(container);
 
 		ServletRegistration.Dynamic servlet = container.addServlet(
-				"dispatcher", new DispatcherServlet(ctx));
+				"dispatcher", new WarpDispatcherServlet());
 
 		servlet.setLoadOnStartup(1);
 		servlet.addMapping("/");
